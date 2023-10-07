@@ -1,0 +1,7 @@
+DIR_NAME = "default_directory"
+STATE_FILE = "task_status.json"
+TEMP_FILE_1 = "temp_file_1.txt"
+TEMP_FILE_2 = "temp_file_2.txt"
+TEST_URL = "https://www.ya.ru/"
+TEST_TEXT = "Тестовый текст"
+ADD_TEXT = "Дополнительный текст"
