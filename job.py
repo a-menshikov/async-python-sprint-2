@@ -45,7 +45,7 @@ class Job:
         if self.start_time:
             time.sleep(self.start_time)
 
-        for attempt in range(self.max_restarts + 1):
+        for _ in range(self.max_restarts + 1):
             try:
                 coroutine = self.run()
                 while True:

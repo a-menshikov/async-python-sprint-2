@@ -1,20 +1,21 @@
 import os
 from http import HTTPStatus
 from pathlib import Path
+from typing import Generator
 
 import requests
 
 from logger import logger
 
 
-def create_directory(directory_name: str) -> None:
+def create_directory(directory_name: str) -> Generator:
     """Создает директорию."""
     Path(directory_name).mkdir(exist_ok=True)
     logger.info("Directory %s created", directory_name)
     yield
 
 
-def create_file_and_write(filename: str, content: str) -> None:
+def create_file_and_write(filename: str, content: str) -> Generator:
     """Создает файл и записывает в него содержимое."""
     with open(filename, "w") as file:
         file.write(content)
@@ -22,7 +23,7 @@ def create_file_and_write(filename: str, content: str) -> None:
     yield
 
 
-def read_file(filename: str) -> None:
+def read_file(filename: str) -> Generator:
     """Читает содержимое файла."""
     logger.info("Read file %s started", filename)
     with open(filename, "r") as file:
@@ -31,7 +32,7 @@ def read_file(filename: str) -> None:
     yield
 
 
-def append_to_file(filename: str, additional_content: str) -> None:
+def append_to_file(filename: str, additional_content: str) -> Generator:
     """Дописывает содержимое в конец файла."""
     with open(filename, "a") as file:
         file.write(additional_content)
@@ -43,21 +44,21 @@ def append_to_file(filename: str, additional_content: str) -> None:
     yield
 
 
-def remove_directory(directory_name: str) -> None:
+def remove_directory(directory_name: str) -> Generator:
     """Удаляет директорию."""
     os.rmdir(directory_name)
     logger.info("Directory %s removed", directory_name)
     yield
 
 
-def remove_file(filename: str) -> None:
+def remove_file(filename: str) -> Generator:
     """Удаляет файл."""
     os.remove(filename)
     logger.info("File %s removed", filename)
     yield
 
 
-def create_file(filename: str) -> None:
+def create_file(filename: str) -> Generator:
     """Создает файл."""
     with open(filename, "w") as file:
         file.write('')
@@ -65,7 +66,7 @@ def create_file(filename: str) -> None:
     yield
 
 
-def get_data_from_url(url: str) -> None:
+def get_data_from_url(url: str) -> Generator:
     """Получает данные по url."""
     response = requests.get(url)
     if response.status_code == HTTPStatus.OK:

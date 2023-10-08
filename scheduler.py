@@ -1,6 +1,7 @@
 import json
 from collections import deque
 
+from exceptions import SchedulerOverflowError
 from job import Job, JobStatus
 
 
@@ -15,7 +16,9 @@ class Scheduler:
     def add_task(self, task: Job) -> None:
         """Добавляет задание в планировщик."""
         if len(self.tasks) >= self.max_tasks:
-            raise Exception("Scheduler is full. Cannot add more tasks.")
+            raise SchedulerOverflowError(
+                "Scheduler is full. Cannot add more tasks.",
+            )
         self.tasks.append(task)
 
     def execute_tasks(self) -> None:
